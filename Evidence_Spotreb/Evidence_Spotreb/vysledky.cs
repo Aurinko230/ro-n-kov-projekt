@@ -138,9 +138,10 @@ namespace Evidence_Spotreb
             //TODO enabled jen když nejsou divne hodnoty
         private void button2_Click(object sender, EventArgs e)
         {
-             zobrazovany.pripsat_posledni_hodnoty();
+            zobrazovany.pripsat_posledni_hodnoty();
             zobrazovany.pred_ulozenim();
             zobrazovany.ulozit_dum();
+            ulozene_vysledky = true;
         }
 
         GroupBox spolecne_prostory()
@@ -371,7 +372,25 @@ namespace Evidence_Spotreb
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (ulozene_vysledky == false)
+            {
+                DialogResult dialogResult = MessageBox.Show("Neuloženo", "opravdu chcete zavřít bez uložení hodnot?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //nic
+                }
+
+
+            }
+            else
+            {
+                this.Close();
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -438,7 +457,14 @@ namespace Evidence_Spotreb
                 sw.WriteLine("</html>");
 
             }
+            //ulozeni hodnot domu
 
+            // TODO - odkomentovat (pro testovani se to neukládá )
+
+            //zobrazovany.pripsat_posledni_hodnoty();
+            //zobrazovany.pred_ulozenim();
+            //zobrazovany.ulozit_dum();
+            //ulozene_vysledky = true;
 
 
         }

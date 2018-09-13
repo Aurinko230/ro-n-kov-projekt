@@ -45,7 +45,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(235, 483);
+            this.button1.Location = new System.Drawing.Point(221, 483);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(91, 23);
             this.button1.TabIndex = 1;
@@ -55,21 +55,21 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(332, 483);
+            this.button2.Location = new System.Drawing.Point(318, 483);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(90, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "ulozit hodnoty";
+            this.button2.Text = "zapsat hodnoty";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(429, 483);
+            this.button3.Location = new System.Drawing.Point(414, 483);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(89, 23);
+            this.button3.Size = new System.Drawing.Size(241, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "ulozit vysledky do souboru";
+            this.button3.Text = "ulozit vysledky do souboru a zapsat hodnoty";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -87,7 +87,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 521);
+            this.ClientSize = new System.Drawing.Size(833, 537);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

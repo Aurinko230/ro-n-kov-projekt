@@ -33,3 +33,6 @@ G:\Users\Tyrqi\Desktop\ročníkový projekt_30.8\Evidence_Spotreb\Evidence_Spotr
 G:\Users\Tyrqi\Desktop\ročníkový projekt_30.8\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.zadavani_hodnot.resources
 G:\Users\Tyrqi\Desktop\ročníkový projekt_30.8\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.vysledky.resources
 G:\Users\Tyrqi\Desktop\ročníkový projekt_30.8\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.graf_spotreb.resources
+G:\Users\Tyrqi\Desktop\ročníkový projekt\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.graf_spotreb.resources
+G:\Users\Tyrqi\Desktop\ročníkový projekt\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.vysledky.resources
+G:\Users\Tyrqi\Desktop\ročníkový projekt\Evidence_Spotreb\Evidence_Spotreb\obj\Debug\Evidence_Spotreb.zadavani_hodnot.resources
