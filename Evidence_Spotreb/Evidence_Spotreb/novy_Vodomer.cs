@@ -65,7 +65,7 @@ namespace Evidence_Spotreb
                     }
                     else
                     {
-                        MessageBox.Show("vodoměr zadaný jako společný neexistuje (neplatné ID)", "Neplatné ID", MessageBoxButtons.OK);
+                        MessageBox.Show("vodoměr zadaný jako společný neexistuje (neplatné ID) nebo už je použit pro jiný výpočet", "Neplatné ID", MessageBoxButtons.OK);
                         return false;
                     }
 
@@ -100,7 +100,7 @@ namespace Evidence_Spotreb
 
             if (textBox1.Text != "")
             {
-                voda.Id = Int32.Parse(label5.Text);
+                voda.Id = Int32.Parse(label5.Text);//id pridavaneho vodomeru
 
                 if (checkBox1.Checked == true)
                 {
@@ -116,9 +116,9 @@ namespace Evidence_Spotreb
                         foreach (int id in listBox1.Items)
                         {
                             voda.odecitane.Add(id);
-                            zobrazovany.oznac_pouzity_vodomer(id);
+                            zobrazovany.oznac_pouzity_vodomer(id,true);
                         }
-
+                        zobrazovany.oznac_pouzity_vodomer(Int32.Parse(textBox3.Text), true);
                         this.Close();
                     }
                     
@@ -148,7 +148,7 @@ namespace Evidence_Spotreb
         {
             foreach (meric voda in zobrazovany.vsechny_vodomery_v_dome)
             {
-                if (voda.Id == id)
+                if (voda.Id == id && voda.dopocitavany==false && voda.pouzit_v_dopocitavanem==false)
                 {
                     return true;
                 }
@@ -164,12 +164,13 @@ namespace Evidence_Spotreb
             {
                 if (existuje_vodomer(id))
                 {
+                    
                     listBox1.Items.Add(id);
                     textBox2.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show("vodoměr s tímto ID neexistuje", "Neplatné ID", MessageBoxButtons.OK);
+                    MessageBox.Show("vodoměr s tímto ID neexistuje,nebo je už použit pro jiný výpoče, nebo je sám dopočítávaný ", "Neplatné ID", MessageBoxButtons.OK);
                 }
 
             }

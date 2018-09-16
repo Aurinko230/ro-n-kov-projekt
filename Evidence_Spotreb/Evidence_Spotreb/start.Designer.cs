@@ -47,6 +47,8 @@
             this.hodnotyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zadatPočátečníHodnotyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.konecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.konecToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +56,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.úpravyToolStripMenuItem,
-            this.hodnotyToolStripMenuItem});
+            this.hodnotyToolStripMenuItem,
+            this.konecToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(848, 24);
@@ -205,6 +208,21 @@
             this.panel1.Size = new System.Drawing.Size(848, 483);
             this.panel1.TabIndex = 1;
             // 
+            // konecToolStripMenuItem
+            // 
+            this.konecToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.konecToolStripMenuItem1});
+            this.konecToolStripMenuItem.Name = "konecToolStripMenuItem";
+            this.konecToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.konecToolStripMenuItem.Text = "Konec";
+            // 
+            // konecToolStripMenuItem1
+            // 
+            this.konecToolStripMenuItem1.Name = "konecToolStripMenuItem1";
+            this.konecToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.konecToolStripMenuItem1.Text = "konec";
+            this.konecToolStripMenuItem1.Click += new System.EventHandler(this.konecToolStripMenuItem1_Click);
+            // 
             // start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -214,7 +232,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "start";
-            this.Text = "Form1";
+            this.Text = "Evidence spotřeb energii";
             this.Load += new System.EventHandler(this.start_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -244,6 +262,8 @@
         private System.Windows.Forms.ToolStripMenuItem uložDůmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem načtiExistujícíDůmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zadatPočátečníHodnotyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem konecToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem konecToolStripMenuItem1;
     }
 }
 

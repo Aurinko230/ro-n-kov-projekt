@@ -83,27 +83,27 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(201, 81);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.label5.Text = "kč/m3";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(201, 108);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 5;
-            this.label6.Text = "label6";
+            this.label6.Text = "kč/kwh";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(201, 135);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(38, 13);
             this.label7.TabIndex = 6;
-            this.label7.Text = "label7";
+            this.label7.Text = "kč/m3";
             // 
             // textBox_voda
             // 
@@ -151,6 +151,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ControlBox = false;
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_plyn);
@@ -163,6 +164,7 @@
             this.Controls.Add(this.Elektřina);
             this.Controls.Add(this.Voda);
             this.Controls.Add(this.label1);
+            this.MaximizeBox = false;
             this.Name = "ceny_Energii";
             this.Text = "ceny_Energii";
             this.Load += new System.EventHandler(this.ceny_Energii_Load);

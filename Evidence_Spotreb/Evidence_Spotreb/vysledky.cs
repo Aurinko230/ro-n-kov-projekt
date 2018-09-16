@@ -135,7 +135,7 @@ namespace Evidence_Spotreb
         //uložení hodnot
         //zapsání s chématu domu s novýma hodnotama
 
-            //TODO enabled jen když nejsou divne hodnoty
+            //TODO enabled jen když nejsou divne hodnoty, nebo varovny msg box
         private void button2_Click(object sender, EventArgs e)
         {
             zobrazovany.pripsat_posledni_hodnoty();
@@ -361,7 +361,7 @@ namespace Evidence_Spotreb
                 //}
             }
             
-            //TODO spravnej vypocet spolecnych!!!!!!!!!
+           
             //variant je vic- prebytky, spolecny merice, obojí !!!!!
             suma = spolecna_voda_cena + spolecna_elektrina_cena + spolecny_plyn_cena;
             double prebytky_cena = 0;
@@ -398,38 +398,28 @@ namespace Evidence_Spotreb
             //rozumné zobrazení cen pro aktualne zadane období
             //nerozdělovat uložení hodnot a souboru s vysledky? uložit je automaticly taky, nebo msgbox s dotazem?
             // do tabulky a ulozit jako html
-            //TODO-  uzivatel urci kam ukladat
+            // TODO - zapisovat jen jednou jen jako html
+            //TODO - přidat nastavení nazvu obdobi při ukládání
 
-
-            using (StreamWriter sw = new StreamWriter("DOMY\\" + "nazev_obdobi" + ".txt"))
+            string nazev_souboru=textBox1.Text;
+            if (nazev_souboru == "")
             {
-                zobrazovany.pripsat_posledni_hodnoty();
-                zobrazovany.pred_ulozenim();
-
-                sw.WriteLine("<html>");
-                sw.WriteLine("<head>");
-                sw.WriteLine("<style type=\"text/css\">");
-
-                sw.WriteLine("table { border: 1px solid black;");
-                sw.WriteLine("border-collapse: collapse;}");
-                
-
-                sw.WriteLine("</style>");
-                sw.WriteLine("</head>");
-                sw.WriteLine("<body>");
-
-                foreach (byt jedenbyt in zobrazovany.byty)
-                {
-                    jedenbyt.zapis_byt_do_html(sw, this.zobrazovany.ceny_energii, spolecny_cena);
-                    
-                }
-                sw.WriteLine("<br><br>");
-                sw.WriteLine("</body>");
-                sw.WriteLine("</html>");
-
+                nazev_souboru = "posledni_obdobi";
             }
 
-            using (StreamWriter sw = new StreamWriter("DOMY\\" + "nazev_obdobi" + ".html"))
+            //------------------------------
+            var folderBrowserDialog1 = new FolderBrowserDialog();
+            
+            DialogResult result = folderBrowserDialog1.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string cesta = folderBrowserDialog1.SelectedPath;
+  
+
+            //------------------------------
+
+
+            using (StreamWriter sw = new StreamWriter(cesta + "\\"+nazev_souboru + ".html"))
             {
                 zobrazovany.pripsat_posledni_hodnoty();
                 zobrazovany.pred_ulozenim();
@@ -447,6 +437,8 @@ namespace Evidence_Spotreb
                 sw.WriteLine("</head>");
                 sw.WriteLine("<body>");
 
+                zapis_ceny(sw);
+
                 foreach (byt jedenbyt in zobrazovany.byty)
                 {
                     jedenbyt.zapis_byt_do_html(sw, this.zobrazovany.ceny_energii, spolecny_cena);
@@ -457,6 +449,8 @@ namespace Evidence_Spotreb
                 sw.WriteLine("</html>");
 
             }
+           }
+
             //ulozeni hodnot domu
 
             // TODO - odkomentovat (pro testovani se to neukládá )
@@ -466,6 +460,15 @@ namespace Evidence_Spotreb
             //zobrazovany.ulozit_dum();
             //ulozene_vysledky = true;
 
+
+        }
+
+        void zapis_ceny(StreamWriter sw)
+        {
+            sw.WriteLine("<h3>Ceny energií</h3>");
+            sw.WriteLine("<p>voda:"+zobrazovany.ceny_energii.cena_vody_za_m3.ToString()+"kč/m3</p>");
+            sw.WriteLine("<p>elektřina:"+ zobrazovany.ceny_energii.cena_elektriny_za_kwh.ToString()+ "kč/kwh</p>");
+            sw.WriteLine("<p>plyn"+ zobrazovany.ceny_energii.cena_plynu_za_m3.ToString()+ "kč/m3</p>");
 
         }
     }

@@ -97,8 +97,8 @@ namespace Evidence_Spotreb
             Point graf_pozice = new Point(720, 10);
             graf.Text = "graf";
             graf.Location = graf_pozice;
-           // graf.Click += Zobraz_Graf;
-            graf.Tag = cesta_domu;
+            graf.Click += Zobraz_Graf;
+            //graf.Tag = cesta_domu;
             graf.Parent = gr_byt;
 
 
@@ -206,6 +206,17 @@ namespace Evidence_Spotreb
             }
 
 
+
+        }
+
+        public void Zobraz_Graf(object sender, EventArgs e)
+        {
+            byt zobrazovany = this;
+            Button b = (Button)sender;
+            string cesta = (String)b.Tag;
+            graf_spotreb graf = new graf_spotreb();
+            graf.tento_byt = this;
+            graf.ShowDialog();
 
         }
 

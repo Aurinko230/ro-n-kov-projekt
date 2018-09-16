@@ -160,8 +160,7 @@ namespace Evidence_Spotreb
             //if (kontrola_pred_ulozenim())
            // {
 
-                // System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(zobrazovany.GetType());
-                // x.Serialize(Console.Out, zobrazovany);
+                
 
                 dum_ulozeni ukladany = new dum_ulozeni(this);
 
@@ -621,7 +620,7 @@ namespace Evidence_Spotreb
 
 
         //}
-        public void oznac_pouzity_vodomer(int id)
+        public void oznac_pouzity_vodomer(int id, bool oznacovani)
         {
             foreach (byt jedenbyt in byty)
             {
@@ -629,15 +628,32 @@ namespace Evidence_Spotreb
                 {
                     if (vodomer.Id == id)
                     {
-                        vodomer.pouzit_v_dopocitavanem = true;
+                        vodomer.pouzit_v_dopocitavanem = oznacovani;
                     }
 
                 }
             }
-            foreach (meric vodomer in dalsi_vodomery)
+            if (dalsi_vodomery != null)
             {
+                foreach (meric vodomer in dalsi_vodomery)
+                {
+                    if (vodomer.Id == id)
+                    {
+                        vodomer.pouzit_v_dopocitavanem = oznacovani;
+                    }
+
+                }
+            }
+            if (celkovy_voda != null)
+            {
+                if (celkovy_voda.Id == id)
+                {
+                    celkovy_voda.pouzit_v_dopocitavanem = oznacovani;
+                }
 
             }
+
+            //TODO-- společný by se neměl používat pro výpočty
 
             
 

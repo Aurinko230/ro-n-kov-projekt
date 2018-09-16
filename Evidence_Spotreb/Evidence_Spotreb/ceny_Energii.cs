@@ -78,6 +78,7 @@ namespace Evidence_Spotreb
                 nastavovane_ceny.cena_vody_za_m3 = voda;
                 nastavovane_ceny.cena_elektriny_za_kwh = elektrina;
                 nastavovane_ceny.cena_plynu_za_m3 = plyn;
+
                 this.Close();
             }
         }

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Evidence_Spotreb
 {
     public partial class novy_Byt : Form
-    { //TODO kontrola- co vlastně kontrolje?? projít a ověřit
+    { 
         bool kontrola()
         {
             if (this.tehle_byt.Popis != "")
@@ -252,7 +252,7 @@ namespace Evidence_Spotreb
             if (pridani.ano)
             {
                 tehle_byt.vodomery.Add(voda_novy);
-                //zobrazovany_dum.vsechny_vodomery_v_dome.Add(voda_novy);
+                
 
                 zobraz_byt(tehle_byt);
                 this.Refresh();
@@ -285,6 +285,19 @@ namespace Evidence_Spotreb
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //odoznacit ostatni použité kokud byl do bytu přidan dopočítavaný vodoměr a ten se nyní nezapíše
+            foreach (meric vodomer in tehle_byt.vodomery)
+            {
+                if (vodomer.dopocitavany == true)
+                {
+                    foreach (int ID in vodomer.odecitane)
+                    {
+                        zobrazovany_dum.oznac_pouzity_vodomer(ID, false);
+                    }
+                    zobrazovany_dum.oznac_pouzity_vodomer(vodomer.spolecnyID, true);
+
+                }
+            }
             this.Close();
         }
     }

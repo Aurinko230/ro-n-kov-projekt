@@ -21,13 +21,14 @@ namespace Evidence_Spotreb
 
         Label zalohy;
         Label cena_celkem;
+        byt tento_byt;
 
 
 
 
         public Byt_groupBox(byt tehle_byt, ceny ceny_energii, double spolecne_prostory)
         {
-            
+            tento_byt = tehle_byt;
             this.Width = 600;
             this.Height = 200;
             this.Text = tehle_byt.Popis;

@@ -60,6 +60,13 @@ namespace Evidence_Spotreb
 
         private void zadavani_hodnot_Load(object sender, EventArgs e)
         {
+
+
+            label1.Text = zobrazovany.ceny_energii.cena_vody_za_m3.ToString();
+            label2.Text = zobrazovany.ceny_energii.cena_elektriny_za_kwh.ToString();
+            label3.Text = zobrazovany.ceny_energii.cena_plynu_za_m3.ToString();
+
+
             Label popis = new Label();
             popis.Text = zobrazovany.popis;
             popis.Location = new Point(25, 25);
@@ -551,6 +558,7 @@ namespace Evidence_Spotreb
 
                 }
                 return 0;
+                
             }
             else
             {// je dopocítávany a hodnota nova hodnota merice neni zadaná a spočítá se az pri zápisu do seznamu hodnot 
@@ -559,6 +567,9 @@ namespace Evidence_Spotreb
 
         }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

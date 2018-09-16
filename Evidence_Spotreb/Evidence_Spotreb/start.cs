@@ -415,22 +415,35 @@ namespace Evidence_Spotreb
             if (zobrazovany.kontrola_pred_ulozenim())
             {
 
-                // System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(zobrazovany.GetType());
-                // x.Serialize(Console.Out, zobrazovany);
-
-                dum_ulozeni ukladany = new dum_ulozeni(zobrazovany);
-
-                StringWriter sw = new StringWriter();
-                XmlTextWriter tw = null;
-                XmlSerializer serializer = new XmlSerializer(typeof(dum_ulozeni));
-                tw = new XmlTextWriter(sw);
-                using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".xml"))
+                DialogResult dialogResult = MessageBox.Show("Uložit", "opravdu chcete uložit dům? Po uložení už nebude moždé dům dále upravovat.", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    serializer.Serialize(tw, ukladany);
-                    swr.Write(sw.ToString());
+                    zobrazovany.ulozeny = true;
+                    zobrazovany.ulozit_dum();
+                    zakazat_upravy();
                 }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //nic
+                }
+
+
                 
-                Console.WriteLine(sw.ToString());
+                //zobrazovany.ulozeny = true;
+                //dum_ulozeni ukladany = new dum_ulozeni(zobrazovany);
+
+                //StringWriter sw = new StringWriter();
+                //XmlTextWriter tw = null;
+                //XmlSerializer serializer = new XmlSerializer(typeof(dum_ulozeni));
+                //tw = new XmlTextWriter(sw);
+                //using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".xml"))
+                //{
+                //    serializer.Serialize(tw, ukladany);
+                //    swr.Write(sw.ToString());
+                //}
+                
+                //zakazat_upravy();
+
             }
           
 
@@ -456,8 +469,6 @@ namespace Evidence_Spotreb
         private void načtiExistujícíDůmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-
-
 
             if (Directory.Exists("DOMY"))
             {
@@ -498,42 +509,41 @@ namespace Evidence_Spotreb
         private void cenyEnergiíToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (zobrazovany != null)
+            if (zobrazovany != null && zobrazovany.ulozeny== true)
             {
                 ceny kopie_cen = zobrazovany.ceny_energii;
                 ceny_Energii ceny_pro_tento_dum = new ceny_Energii(kopie_cen);
                 ceny_pro_tento_dum.ShowDialog();
                 zobrazovany.ceny_energii = ceny_pro_tento_dum.nastavovane_ceny;
-                ///udelat z toho samostatnou metodu a volat ji.. to samý i při běžnym uložení
+                
 
-
-                //kontrola by neměla být potřeba pokud se ceny přidávají jen do už uloženého domu a ten je tedy už zkontrolovaný
+               
+                //kontrola by neměla být potřeba pokud se ceny přidávají jen do už uloženého domu a ten je tedy už zkontrolovaný a nemohl být znovu upravovan
                 // if (zobrazovany.kontrola_pred_ulozenim())
                 // {
 
-
-
+                
                 dum_ulozeni ukladany = new dum_ulozeni(zobrazovany);
 
                 StringWriter sw = new StringWriter();
                 XmlTextWriter tw = null;
                 XmlSerializer serializer = new XmlSerializer(typeof(dum_ulozeni));
                 tw = new XmlTextWriter(sw);
-                using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".txt"))
+                using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".xml"))
                 {
                     serializer.Serialize(tw, ukladany);
                     swr.Write(sw.ToString());
                 }
+                zobrazovany.zobraz_dum();
+                
 
-
-
-                Console.WriteLine(sw.ToString());
+               // Console.WriteLine(sw.ToString());
                 //  }
 
             }
             else
             {
-                MessageBox.Show("Není načten žádný dům pro úpravu cen energií", "Žádný dům", MessageBoxButtons.OK);
+                MessageBox.Show("Není načten žádný dům pro úpravu cen energií, nebo dům není uložen", "Žádný dům", MessageBoxButtons.OK);
             }
         }
         //zadavani novych hodnot
@@ -555,8 +565,7 @@ namespace Evidence_Spotreb
                        // zadavani.prvni_hodnoty = true;
                         zadavani.ShowDialog();
                         zobrazovany.zobraz_dum();
-
-                        //TODO jak se dum se zobrazuje po uloženi hodnot??
+                        
                     }
                 }
 
@@ -568,9 +577,13 @@ namespace Evidence_Spotreb
             }
             else
             { MessageBox.Show("Není načten žádný dům pro který by bylo možné zadat hodnoty", "ŽÁDNÝ DŮM", MessageBoxButtons.OK); }
+            
+        }
 
-
-
+        private void konecToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            //TODO- zakazat zavření přímo--- kontrolovat uložení před zavřením?!
+            this.Close();
         }
     }
 }
