@@ -30,7 +30,7 @@ namespace Evidence_Spotreb
             novy.novy_dum = zobrazovany;
             novy.ShowDialog();
             
-            if (zobrazovany.popis != null)
+            if (zobrazovany != null)
             {
                 zobrazovany.zobraz_dum();
                 this.uložDůmToolStripMenuItem.Enabled = true;
@@ -411,39 +411,28 @@ namespace Evidence_Spotreb
         }
 
         private void uložDůmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (zobrazovany.kontrola_pred_ulozenim())
+        {   if (zobrazovany != null && zobrazovany.popis != null)
             {
-
-                DialogResult dialogResult = MessageBox.Show("Uložit", "opravdu chcete uložit dům? Po uložení už nebude moždé dům dále upravovat.", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (zobrazovany.kontrola_pred_ulozenim())
                 {
-                    zobrazovany.ulozeny = true;
-                    zobrazovany.ulozit_dum();
-                    zakazat_upravy();
+
+                    DialogResult dialogResult = MessageBox.Show("Uložit", "opravdu chcete uložit dům? Po uložení už nebude moždé dům dále upravovat.", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        zobrazovany.ulozeny = true;
+                        zobrazovany.ulozit_dum();
+                        
+                        zakazat_upravy();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //neuklada se
+                    }
                 }
-                else if (dialogResult == DialogResult.No)
-                {
-                    //nic
-                }
-
-
-                
-                //zobrazovany.ulozeny = true;
-                //dum_ulozeni ukladany = new dum_ulozeni(zobrazovany);
-
-                //StringWriter sw = new StringWriter();
-                //XmlTextWriter tw = null;
-                //XmlSerializer serializer = new XmlSerializer(typeof(dum_ulozeni));
-                //tw = new XmlTextWriter(sw);
-                //using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".xml"))
-                //{
-                //    serializer.Serialize(tw, ukladany);
-                //    swr.Write(sw.ToString());
-                //}
-                
-                //zakazat_upravy();
-
+            }
+            else
+            {
+                MessageBox.Show("neexistuje žádný dům pro uložení", "neexistuje", MessageBoxButtons.OK);
             }
           
 
@@ -553,7 +542,7 @@ namespace Evidence_Spotreb
             {
                 if (zobrazovany.ceny_energii != null)
                 {
-                    if (!Directory.Exists("DOMY") || !File.Exists("DOMY//" + zobrazovany.popis + ".txt"))
+                    if (!Directory.Exists("DOMY") || !File.Exists("DOMY//" + zobrazovany.popis + ".xml"))
                     {
                         MessageBox.Show("Nejprve dům uložte", "Uložit dům", MessageBoxButtons.OK);
                     }
@@ -562,7 +551,6 @@ namespace Evidence_Spotreb
                     {
                         zadavani_hodnot zadavani = new zadavani_hodnot();
                         zadavani.zobrazovany = zobrazovany;
-                       // zadavani.prvni_hodnoty = true;
                         zadavani.ShowDialog();
                         zobrazovany.zobraz_dum();
                         
@@ -585,6 +573,39 @@ namespace Evidence_Spotreb
             //TODO- zakazat zavření přímo--- kontrolovat uložení před zavřením?!
             this.Close();
         }
+
+        //private void start_Enter(object sender, EventArgs e)
+        //{
+        //    //if (zobrazovany != null && zobrazovany.byty != null)
+        //    //{
+        //    //    foreach (byt jeden_byt in zobrazovany.byty)
+        //    //    {
+        //    //        if (jeden_byt.upraveno == true)
+        //    //        {
+        //    //            zobrazovany.zobraz_dum();
+
+        //    //        }
+        //    //    }
+        //    //}
+
+        //}
+
+        //private void start_Activated(object sender, EventArgs e)
+        //{
+        //    if (zobrazovany != null && zobrazovany.byty != null)
+        //    {
+        //        foreach (byt jeden_byt in zobrazovany.byty)
+        //        {
+        //            if (jeden_byt.upraveno == true)
+        //            {
+        //                zobrazovany.zobraz_dum();
+
+        //            }
+        //        }
+        //    }
+
+
+        //}
     }
 }
 

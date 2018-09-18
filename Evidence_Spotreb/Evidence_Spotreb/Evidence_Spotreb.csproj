@@ -108,6 +108,7 @@
     <Compile Include="meric.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="trojice.cs" />
     <Compile Include="vysledky.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +126,12 @@
     </Compile>
     <Compile Include="zadavani_hodnot.Designer.cs">
       <DependentUpon>zadavani_hodnot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="zmenit_zalohy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="zmenit_zalohy.Designer.cs">
+      <DependentUpon>zmenit_zalohy.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="ceny_Energii.resx">
       <DependentUpon>ceny_Energii.cs</DependentUpon>
@@ -167,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="zadavani_hodnot.resx">
       <DependentUpon>zadavani_hodnot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="zmenit_zalohy.resx">
+      <DependentUpon>zmenit_zalohy.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

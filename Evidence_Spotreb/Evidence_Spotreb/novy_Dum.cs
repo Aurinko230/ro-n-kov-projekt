@@ -38,6 +38,7 @@ namespace Evidence_Spotreb
 
         private void button2_Click(object sender, EventArgs e)
         {
+            novy_dum = null;
             Close();
         }
     }

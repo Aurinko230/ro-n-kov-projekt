@@ -10,7 +10,7 @@ namespace Evidence_Spotreb
 {
     public class byt
     { public byt()
-        { }
+        { upraveno = false; }
     
         private string popis;
         public string Popis
@@ -37,6 +37,8 @@ namespace Evidence_Spotreb
                 id = value;
             }
         }
+        public bool upraveno;
+
         public List<meric> vodomery;
         public int zaloha;
         public meric plyn;// nemusí mít všichni
@@ -101,6 +103,15 @@ namespace Evidence_Spotreb
             //graf.Tag = cesta_domu;
             graf.Parent = gr_byt;
 
+
+            //TODO- vyřešit změny jinak
+
+            //Button zalohy_zmena = new Button();
+            //Point zalohy_zmena_pozice = new Point(720, 30);
+            //zalohy_zmena.Text = "Zmenit zalohy";
+            //zalohy_zmena.Location = zalohy_zmena_pozice;
+            //zalohy_zmena.Click += zmena_zaloh;
+            //zalohy_zmena.Parent = gr_byt;
 
 
 
@@ -218,6 +229,19 @@ namespace Evidence_Spotreb
             graf.tento_byt = this;
             graf.ShowDialog();
 
+
+        }
+
+        public void zmena_zaloh(object sender, EventArgs e)
+        {
+            zmenit_zalohy z = new zmenit_zalohy();
+            z.tento_byt = this;
+            z.ShowDialog();
+            //ikdyz uprava vlastne neprobehla
+            upraveno = true;
+
+            
+
         }
 
         public void zapis_byt_do_html(StreamWriter sw, ceny ceny_energii, double spolecne)
@@ -232,7 +256,7 @@ namespace Evidence_Spotreb
                 sw.WriteLine("<td>"+"voda"+"</td>");
                 sw.WriteLine("<td>" + vodomer.Popis + "</td>");
                 sw.WriteLine("<td>" + vodomer.rozdil_poslednich_hodnot + "</td>");
-                sw.WriteLine("<td>" + (vodomer.rozdil_poslednich_hodnot*ceny_energii.cena_vody_za_m3).ToString() + "</td>");
+                sw.WriteLine("<td>" + (vodomer.rozdil_poslednich_hodnot*ceny_energii.cena_vody_za_m3).ToString() + " Kč</td>");
                 sw.WriteLine("</tr>");
                 celkem = celkem + (vodomer.rozdil_poslednich_hodnot * ceny_energii.cena_vody_za_m3);
 
@@ -242,7 +266,7 @@ namespace Evidence_Spotreb
             sw.WriteLine("<td>" + "elektrina" + "</td>");
             sw.WriteLine("<td>" + elektrina.Popis + "</td>");
             sw.WriteLine("<td>" + elektrina.rozdil_poslednich_hodnot + "</td>");
-            sw.WriteLine("<td>" + (elektrina.rozdil_poslednich_hodnot * ceny_energii.cena_elektriny_za_kwh).ToString() + "</td>");
+            sw.WriteLine("<td>" + (elektrina.rozdil_poslednich_hodnot * ceny_energii.cena_elektriny_za_kwh).ToString() + " Kč</td>");
             sw.WriteLine("</tr>");
             celkem = celkem + (elektrina.rozdil_poslednich_hodnot * ceny_energii.cena_elektriny_za_kwh);
 
@@ -253,7 +277,7 @@ namespace Evidence_Spotreb
                 sw.WriteLine("<td>" + "plyn" + "</td>");
                 sw.WriteLine("<td>" + plyn.Popis + "</td>");
                 sw.WriteLine("<td>" + plyn.rozdil_poslednich_hodnot + "</td>");
-                sw.WriteLine("<td>" + (plyn.rozdil_poslednich_hodnot * ceny_energii.cena_plynu_za_m3).ToString() + "</td>");
+                sw.WriteLine("<td>" + (plyn.rozdil_poslednich_hodnot * ceny_energii.cena_plynu_za_m3).ToString() + " Kč</td>");
                 sw.WriteLine("</tr>");
                 celkem = celkem + (plyn.rozdil_poslednich_hodnot * ceny_energii.cena_plynu_za_m3);
             }
@@ -262,7 +286,7 @@ namespace Evidence_Spotreb
             sw.WriteLine("<td>" + "spolecne" + "</td>");
             sw.WriteLine("<td>" + "" + "</td>");
             sw.WriteLine("<td>" + ""+ "</td>");
-            sw.WriteLine("<td>" + spolecne.ToString()+ "</td>");
+            sw.WriteLine("<td>" + spolecne.ToString()+ " Kč</td>");
             sw.WriteLine("</tr>");
 
           
@@ -271,7 +295,7 @@ namespace Evidence_Spotreb
             sw.WriteLine("<td>" + "celkem" + "</td>");
             sw.WriteLine("<td>" + "" + "</td>");
             sw.WriteLine("<td>" + "" + "</td>");
-            sw.WriteLine("<td>" + celkem.ToString() + "</td>");
+            sw.WriteLine("<td>" + celkem.ToString() + " Kč</td>");
             sw.WriteLine("</tr>");
 
             sw.WriteLine("</table>");

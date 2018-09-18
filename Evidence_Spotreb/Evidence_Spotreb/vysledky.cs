@@ -39,6 +39,7 @@ namespace Evidence_Spotreb
         double suma=0;
 
         bool ulozene_vysledky;
+        bool upravy_pred_ulozenim;
 
         public vysledky(List<My_TextBox> boxy)
         {
@@ -48,6 +49,7 @@ namespace Evidence_Spotreb
 
         private void vysledky_Load(object sender, EventArgs e)
         {
+            upravy_pred_ulozenim = false;
             ulozene_vysledky = false;
             foreach (byt jeden_byt in zobrazovany.byty)
             {
@@ -138,11 +140,19 @@ namespace Evidence_Spotreb
             //TODO enabled jen když nejsou divne hodnoty, nebo varovny msg box
         private void button2_Click(object sender, EventArgs e)
         {
-            zobrazovany.pripsat_posledni_hodnoty();
-            zobrazovany.pred_ulozenim();
+            
+            if (upravy_pred_ulozenim == false)
+            {
+                zobrazovany.pripsat_posledni_hodnoty();
+                zobrazovany.pred_ulozenim();
+                upravy_pred_ulozenim = true;
+            }
+            
             zobrazovany.ulozit_dum();
             ulozene_vysledky = true;
         }
+
+
 
         GroupBox spolecne_prostory()
         { 
@@ -398,8 +408,7 @@ namespace Evidence_Spotreb
             //rozumné zobrazení cen pro aktualne zadane období
             //nerozdělovat uložení hodnot a souboru s vysledky? uložit je automaticly taky, nebo msgbox s dotazem?
             // do tabulky a ulozit jako html
-            // TODO - zapisovat jen jednou jen jako html
-            //TODO - přidat nastavení nazvu obdobi při ukládání
+            
 
             string nazev_souboru=textBox1.Text;
             if (nazev_souboru == "")
@@ -421,10 +430,15 @@ namespace Evidence_Spotreb
 
             using (StreamWriter sw = new StreamWriter(cesta + "\\"+nazev_souboru + ".html"))
             {
-                zobrazovany.pripsat_posledni_hodnoty();
-                zobrazovany.pred_ulozenim();
+                
+                    if (upravy_pred_ulozenim == false)
+                    {
+                        zobrazovany.pripsat_posledni_hodnoty();
+                        zobrazovany.pred_ulozenim();
+                        upravy_pred_ulozenim = true;
+                    }
 
-                sw.WriteLine("<html>");
+                    sw.WriteLine("<html>");
                 sw.WriteLine("<head>");
                 sw.WriteLine("<style type=\"text/css\">");
 

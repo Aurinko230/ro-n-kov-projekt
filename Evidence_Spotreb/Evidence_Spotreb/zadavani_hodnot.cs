@@ -68,6 +68,7 @@ namespace Evidence_Spotreb
 
 
             Label popis = new Label();
+            popis.Width = 300;
             popis.Text = zobrazovany.popis;
             popis.Location = new Point(25, 25);
             popis.Font=new Font("Microsoft Sans Serif",20);
