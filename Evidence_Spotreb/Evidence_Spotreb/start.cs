@@ -445,7 +445,7 @@ namespace Evidence_Spotreb
             dum_ulozeni overview = (dum_ulozeni)reader.Deserialize(file);
             file.Close();
             this.zobrazovany = new dum(overview, this.panel1, this);
-            //zakazat další úpravy domu, pouze zadání počátečních hodnot
+            //zakazat další úpravy domu
             this.zobrazovany.ulozeny = true;
             zakazat_upravy();
 

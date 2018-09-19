@@ -142,10 +142,8 @@ namespace Evidence_Spotreb
 
 
         }
-        //uložení hodnot
-        //zapsání schématu domu s novýma hodnotama
-
         
+        //zapsání schématu domu s novýma hodnotama
         private void button2_Click(object sender, EventArgs e)
         {
             
@@ -166,7 +164,6 @@ namespace Evidence_Spotreb
 
         GroupBox spolecne_prostory()
         { 
-            
             GroupBox box = new GroupBox();
             box.Text = "Ceny energií za společné prostory";
             box.Width = 500;
@@ -459,7 +456,6 @@ namespace Evidence_Spotreb
             {
                 string cesta = folderBrowserDialog1.SelectedPath;
   
-
             //------------------------------
 
 

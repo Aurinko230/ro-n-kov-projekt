@@ -185,11 +185,11 @@ namespace Evidence_Spotreb
            // }
         }
         /// <summary>
-        /// dům musí splňovat:
+        /// Ověří zda dům obsahuje vše co musí( celkové měřiče, alespoň jeden byt)
         /// </summary>
         /// <returns>
-        /// True pokud splňuje podmínky,False pokud ne.
-        /// Pokud nesplňuje vyhodí messagebox se seznamem nesplňěných parametrů
+        /// true- splnuje- může být uložen
+        /// false - nesplňuje, nesmí být v takovém stavu uložen
         /// </returns>
         public bool kontrola_pred_ulozenim()
         {
@@ -380,14 +380,14 @@ namespace Evidence_Spotreb
 
 
                 Label spolecny_vodomer_id = new Label();
-                spolecny_vodomer_id.Text = "ID: " + this.spolecne_prostory_voda.Id.ToString();// bude tam posledni hodnota
+                spolecny_vodomer_id.Text = "ID: " + this.spolecne_prostory_voda.Id.ToString();
                 spolecny_vodomer_id.Location = pozice_vodomeru;
                 spolecny_vodomer_id.Parent = box;
                 pozice_vodomeru.Y = pozice_vodomeru.Y + 25;
 
 
                 Label spolecny_vodomer = new Label();
-                spolecny_vodomer.Text = this.spolecne_prostory_voda.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_vodomer.Text = this.spolecne_prostory_voda.posledni_hodnota.ToString();
                 spolecny_vodomer.Location = pozice_vodomeru;
                 spolecny_vodomer.Parent = box;
                 pozice_vodomeru.Y = pozice_vodomeru.Y + 25;
@@ -404,13 +404,13 @@ namespace Evidence_Spotreb
                 nadpis_elektromer.Parent = box;
 
                 Label spolecny_elektromer_id = new Label();
-                spolecny_elektromer_id.Text = "ID: " + this.spolecne_prostory_elektrina.Id.ToString();// bude tam posledni hodnota
+                spolecny_elektromer_id.Text = "ID: " + this.spolecne_prostory_elektrina.Id.ToString();
                 spolecny_elektromer_id.Location = pozice_elektromeru;
                 spolecny_elektromer_id.Parent = box;
                 pozice_elektromeru.Y = pozice_elektromeru.Y + 25;
 
                 Label spolecny_elektromer = new Label();
-                spolecny_elektromer.Text = this.spolecne_prostory_elektrina.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_elektromer.Text = this.spolecne_prostory_elektrina.posledni_hodnota.ToString();
                 spolecny_elektromer.Location = pozice_elektromeru;
                 spolecny_elektromer.Parent = box;
                 pozice_elektromeru.Y = pozice_elektromeru.Y + 25;
@@ -426,13 +426,13 @@ namespace Evidence_Spotreb
                 nadpis_plynomer.Parent = box;
 
                 Label spolecny_plynomer_id = new Label();
-                spolecny_plynomer_id.Text = "ID: " + this.spolecne_prostory_plyn.Id.ToString();// bude tam posledni hodnota
+                spolecny_plynomer_id.Text = "ID: " + this.spolecne_prostory_plyn.Id.ToString();
                 spolecny_plynomer_id.Location = pozice_plynomeru;
                 spolecny_plynomer_id.Parent = box;
                 pozice_plynomeru.Y = pozice_plynomeru.Y + 25;
 
                 Label spolecny_plynomer = new Label();
-                spolecny_plynomer.Text = this.spolecne_prostory_plyn.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_plynomer.Text = this.spolecne_prostory_plyn.posledni_hodnota.ToString();
                 spolecny_plynomer.Location = pozice_plynomeru;
                 spolecny_plynomer.Parent = box;
                 pozice_plynomeru.Y = pozice_plynomeru.Y + 25;
@@ -447,6 +447,7 @@ namespace Evidence_Spotreb
 
         public void zobraz_celkove(Point pozice, Panel kam_zobrazit)
         {// možná zobrazovat i id vodomerru, ale asi to neni nutný
+
             GroupBox box = new GroupBox();
             box.Location = pozice;
             box.Width = 500;
@@ -464,13 +465,13 @@ namespace Evidence_Spotreb
                 nadpis_vodomery.Parent = box;
 
                 Label spolecny_vodomer_id = new Label();
-                spolecny_vodomer_id.Text = "ID: " + this.Celkovy_Voda.Id.ToString();// bude tam posledni hodnota
+                spolecny_vodomer_id.Text = "ID: " + this.Celkovy_Voda.Id.ToString();
                 spolecny_vodomer_id.Location = pozice_vodomeru;
                 spolecny_vodomer_id.Parent = box;
                 pozice_vodomeru.Y = pozice_vodomeru.Y + 25;
 
                 Label spolecny_vodomer = new Label();
-                spolecny_vodomer.Text = this.Celkovy_Voda.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_vodomer.Text = this.Celkovy_Voda.posledni_hodnota.ToString();
                 spolecny_vodomer.Location = pozice_vodomeru;
                 spolecny_vodomer.Parent = box;
                 pozice_vodomeru.Y = pozice_vodomeru.Y + 25;
@@ -487,13 +488,13 @@ namespace Evidence_Spotreb
                 nadpis_elektromer.Parent = box;
 
                 Label spolecny_elektromer_id = new Label();
-                spolecny_elektromer_id.Text = "ID: " + this.Celkovy_Elektrina.Id.ToString();// bude tam posledni hodnota
+                spolecny_elektromer_id.Text = "ID: " + this.Celkovy_Elektrina.Id.ToString();
                 spolecny_elektromer_id.Location = pozice_elektromeru;
                 spolecny_elektromer_id.Parent = box;
                 pozice_elektromeru.Y = pozice_elektromeru.Y + 25;
 
                 Label spolecny_elektromer = new Label();
-                spolecny_elektromer.Text = this.Celkovy_Elektrina.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_elektromer.Text = this.Celkovy_Elektrina.posledni_hodnota.ToString();
                 spolecny_elektromer.Location = pozice_elektromeru;
                 spolecny_elektromer.Parent = box;
                 pozice_elektromeru.Y = pozice_elektromeru.Y + 25;
@@ -509,13 +510,13 @@ namespace Evidence_Spotreb
                 nadpis_plynomer.Parent = box;
 
                 Label spolecny_plynomer_id = new Label();
-                spolecny_plynomer_id.Text = "ID: " + this.Celkovy_Plyn.Id.ToString();// bude tam posledni hodnota
+                spolecny_plynomer_id.Text = "ID: " + this.Celkovy_Plyn.Id.ToString();
                 spolecny_plynomer_id.Location = pozice_plynomeru;
                 spolecny_plynomer_id.Parent = box;
                 pozice_plynomeru.Y = pozice_plynomeru.Y + 25;
 
                 Label spolecny_plynomer = new Label();
-                spolecny_plynomer.Text = this.Celkovy_Plyn.posledni_hodnota.ToString();// bude tam posledni hodnota
+                spolecny_plynomer.Text = this.Celkovy_Plyn.posledni_hodnota.ToString();
                 spolecny_plynomer.Location = pozice_plynomeru;
                 spolecny_plynomer.Parent = box;
                 pozice_plynomeru.Y = pozice_plynomeru.Y + 25;
@@ -559,7 +560,7 @@ namespace Evidence_Spotreb
                 hodnota_vodomeru.ForeColor = Color.Blue;
                 if (jedenvodomer.dopocitavany == false)
                 {
-                    hodnota_vodomeru.Text = "Hodnota:" + jedenvodomer.posledni_hodnota.ToString(); // misto popisu posledni hodnotu
+                    hodnota_vodomeru.Text = "Hodnota:" + jedenvodomer.posledni_hodnota.ToString(); 
                 }
                 else
                 {
@@ -604,27 +605,8 @@ namespace Evidence_Spotreb
             return na_jeden_byt;
         }
 
+       
 
-        //private void uloz_dum()
-        //{ if (!Directory.Exists("DOMY"))
-        //    {
-        //        Directory.CreateDirectory("DOMY");
-
-        //    }
-        //    dum_ulozeni ukladany = new dum_ulozeni(this);
-
-        //    StringWriter sw = new StringWriter();
-        //    XmlTextWriter tw = null;
-        //    XmlSerializer serializer = new XmlSerializer(typeof(dum_ulozeni));
-        //    tw = new XmlTextWriter(sw);
-        //    using (StreamWriter swr = new StreamWriter("DOMY\\" + ukladany.popis + ".txt"))
-        //    {
-        //        serializer.Serialize(tw, ukladany);
-        //        swr.Write(sw.ToString());
-        //    }
-
-
-        //}
         public void oznac_pouzity_vodomer(int id, bool oznacovani)
         {
             foreach (byt jedenbyt in byty)
@@ -658,7 +640,8 @@ namespace Evidence_Spotreb
 
             }
 
-            //TODO-- společný by se neměl používat pro výpočty
+            //společný by se neměl používat pro výpočty
+            //pokud by byly jen jedny stoupačky nebo v jinych specialnich situacich by se použit mohl
 
             
 
@@ -743,13 +726,7 @@ namespace Evidence_Spotreb
 
 
         }
-        /// <summary>
-        /// Ověří zda dům obsahuje vše co musí( celkové měřiče, alespoň jeden byt)
-        /// </summary>
-        /// <returns>
-        /// true- splnuje- může být uložen
-        /// false - nesplňuje, nesmí být v takovém stavu uložen
-        /// </returns>
+       
         
     }
 }

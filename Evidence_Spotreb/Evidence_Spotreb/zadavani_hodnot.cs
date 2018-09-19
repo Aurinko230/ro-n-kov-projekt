@@ -12,7 +12,7 @@ namespace Evidence_Spotreb
 {
     public partial class zadavani_hodnot : Form
     {
-        //public bool prvni_hodnoty;
+        
         public dum zobrazovany;
         List<My_TextBox> textboxy;
         List<My_TextBox> textboxy_dopocitavane ;  // nebudou se zobrazovat
@@ -55,9 +55,7 @@ namespace Evidence_Spotreb
             }
 
         }
-
-       
-
+        
         private void zadavani_hodnot_Load(object sender, EventArgs e)
         {
 
