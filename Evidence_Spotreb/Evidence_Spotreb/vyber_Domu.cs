@@ -29,7 +29,10 @@ namespace Evidence_Spotreb
             vybrany_dum = "";
             foreach (String jeden_dum in domy)
             {
-                this.listBox1.Items.Add(jeden_dum);
+                if (jeden_dum.Substring(jeden_dum.Length - 4) == ".xml")
+                {
+                    this.listBox1.Items.Add(jeden_dum);
+                }
             }
         }
 

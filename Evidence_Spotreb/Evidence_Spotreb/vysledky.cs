@@ -39,6 +39,9 @@ namespace Evidence_Spotreb
         double suma=0;
 
         bool ulozene_vysledky;
+        bool zapsane_hodnoty;
+        bool spatne_hodnoty;
+
         bool upravy_pred_ulozenim;
 
         public vysledky(List<My_TextBox> boxy)
@@ -51,6 +54,8 @@ namespace Evidence_Spotreb
         {
             upravy_pred_ulozenim = false;
             ulozene_vysledky = false;
+            zapsane_hodnoty = false;
+
             foreach (byt jeden_byt in zobrazovany.byty)
             {
                 jeden_byt.spocti_spotrebu_bytu();
@@ -78,6 +83,7 @@ namespace Evidence_Spotreb
             {
                 foreach (meric v in b.vodomery)
                 {
+                    //nemělo by vznikat jinde než v dopočítávaných, ostatní hodnoty se kontrolují už při zadávání
                     if (v.rozdil_poslednich_hodnot < 0)
                     {
                         zapor = true;
@@ -88,9 +94,10 @@ namespace Evidence_Spotreb
             
             if (spolecna_voda_cena < 0 || spolecna_elektrina_cena < 0 || spolecny_plyn_cena < 0 || zapor)
             {
-                MessageBox.Show("byly zadány divné hodnoty", "CHYBA", MessageBoxButtons.OK);
+                MessageBox.Show("Byly zadány divné hodnoty,některá z výsledných hodnot je záporná", "CHYBA", MessageBoxButtons.OK);
                 this.button3.Enabled = false;
                 this.button2.Enabled = false;
+                spatne_hodnoty = true;
                 //zobrazovat i pro nesmyslene hodnoty ale s upozornením a neukládat 
 
                 GroupBox box = spolecne_prostory();
@@ -113,6 +120,7 @@ namespace Evidence_Spotreb
             }
             else
             {
+                spatne_hodnoty = false;
 
                 GroupBox box = spolecne_prostory();
                 box.Location = pozice_bytu;
@@ -135,9 +143,9 @@ namespace Evidence_Spotreb
 
         }
         //uložení hodnot
-        //zapsání s chématu domu s novýma hodnotama
+        //zapsání schématu domu s novýma hodnotama
 
-            //TODO enabled jen když nejsou divne hodnoty, nebo varovny msg box
+        
         private void button2_Click(object sender, EventArgs e)
         {
             
@@ -146,10 +154,12 @@ namespace Evidence_Spotreb
                 zobrazovany.pripsat_posledni_hodnoty();
                 zobrazovany.pred_ulozenim();
                 upravy_pred_ulozenim = true;
+                button2.Enabled = false;
             }
             
             zobrazovany.ulozit_dum();
-            ulozene_vysledky = true;
+            zapsane_hodnoty = true;
+            button2.Enabled = false;
         }
 
 
@@ -380,36 +390,61 @@ namespace Evidence_Spotreb
             spolecny_cena = Math.Ceiling(spolecny_cena);
         }
 
+
+        //zavřít formulář s výsledky
         private void button1_Click(object sender, EventArgs e)
         {
-            if (ulozene_vysledky == false)
+            if (spatne_hodnoty == true)
             {
-                DialogResult dialogResult = MessageBox.Show("Neuloženo", "opravdu chcete zavřít bez uložení hodnot?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    this.Close();
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    //nic
-                }
-
-
+                this.Close();
             }
             else
             {
-                this.Close();
+
+                if (zapsane_hodnoty == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Neuloženo", "opravdu chcete zavřít bez zapsání hodnot?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        if (ulozene_vysledky == true)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //nic formular zustane otevreny
+                    }
+
+                }
+                if (ulozene_vysledky == false)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Neuloženo", "opravdu chcete zavřít bez vygenerování souboru s výsledky?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        //nic formular zustane otevreny
+                    }
+
+                }
+
+                else
+                {
+                    this.Close();
+                }
             }
             
         }
 
+
+        //rozumné zobrazení cen pro aktualne zadane období
+        //nerozdělovat uložení hodnot a souboru s vysledky? uložit je automaticly taky, nebo msgbox s dotazem?
+        // do tabulky a ulozit jako html
         private void button3_Click(object sender, EventArgs e)
         {
-            //rozumné zobrazení cen pro aktualne zadane období
-            //nerozdělovat uložení hodnot a souboru s vysledky? uložit je automaticly taky, nebo msgbox s dotazem?
-            // do tabulky a ulozit jako html
-            
-
             string nazev_souboru=textBox1.Text;
             if (nazev_souboru == "")
             {
@@ -461,19 +496,17 @@ namespace Evidence_Spotreb
                 sw.WriteLine("<br><br>");
                 sw.WriteLine("</body>");
                 sw.WriteLine("</html>");
-
             }
            }
+            ulozene_vysledky = true;
+            this.button3.Enabled = false;
 
             //ulozeni hodnot domu
-
-            // TODO - odkomentovat (pro testovani se to neukládá )
 
             //zobrazovany.pripsat_posledni_hodnoty();
             //zobrazovany.pred_ulozenim();
             //zobrazovany.ulozit_dum();
-            //ulozene_vysledky = true;
-
+            
 
         }
 

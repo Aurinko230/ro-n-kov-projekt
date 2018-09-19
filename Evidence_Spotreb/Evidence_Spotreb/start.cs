@@ -446,6 +446,7 @@ namespace Evidence_Spotreb
             file.Close();
             this.zobrazovany = new dum(overview, this.panel1, this);
             //zakazat další úpravy domu, pouze zadání počátečních hodnot
+            this.zobrazovany.ulozeny = true;
             zakazat_upravy();
 
         }
@@ -458,7 +459,6 @@ namespace Evidence_Spotreb
         private void načtiExistujícíDůmToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-
             if (Directory.Exists("DOMY"))
             {
                 String[] domy = Directory.GetFiles("DOMY");
@@ -487,11 +487,7 @@ namespace Evidence_Spotreb
             {
                 MessageBox.Show("neexistují žádné uložené domy", "neexistují", MessageBoxButtons.OK);
             }
-
-
-
-
-
+            
         }
        
 
@@ -510,7 +506,6 @@ namespace Evidence_Spotreb
                 //kontrola by neměla být potřeba pokud se ceny přidávají jen do už uloženého domu a ten je tedy už zkontrolovaný a nemohl být znovu upravovan
                 // if (zobrazovany.kontrola_pred_ulozenim())
                 // {
-
                 
                 dum_ulozeni ukladany = new dum_ulozeni(zobrazovany);
 
@@ -525,8 +520,7 @@ namespace Evidence_Spotreb
                 }
                 zobrazovany.zobraz_dum();
                 
-
-               // Console.WriteLine(sw.ToString());
+                
                 //  }
 
             }
@@ -552,6 +546,8 @@ namespace Evidence_Spotreb
                         zadavani_hodnot zadavani = new zadavani_hodnot();
                         zadavani.zobrazovany = zobrazovany;
                         zadavani.ShowDialog();
+
+                        nacti_schema_domu("DOMY//" + zobrazovany.popis + ".xml");
                         zobrazovany.zobraz_dum();
                         
                     }
@@ -570,42 +566,27 @@ namespace Evidence_Spotreb
 
         private void konecToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //TODO- zakazat zavření přímo--- kontrolovat uložení před zavřením?!
-            this.Close();
+           //zakazat zavření přímo--- kontrolovat uložení před zavřením
+            if ((zobrazovany != null && zobrazovany.ulozeny == true)||(zobrazovany!=null && zobrazovany.popis==null)||zobrazovany==null)
+            {
+                this.Close();
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Neuloženy dům", "opravdu chcete zavřít bez uložení domu?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Close();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //nic formular zustane otevreny
+                }
+
+            }
         }
 
-        //private void start_Enter(object sender, EventArgs e)
-        //{
-        //    //if (zobrazovany != null && zobrazovany.byty != null)
-        //    //{
-        //    //    foreach (byt jeden_byt in zobrazovany.byty)
-        //    //    {
-        //    //        if (jeden_byt.upraveno == true)
-        //    //        {
-        //    //            zobrazovany.zobraz_dum();
-
-        //    //        }
-        //    //    }
-        //    //}
-
-        //}
-
-        //private void start_Activated(object sender, EventArgs e)
-        //{
-        //    if (zobrazovany != null && zobrazovany.byty != null)
-        //    {
-        //        foreach (byt jeden_byt in zobrazovany.byty)
-        //        {
-        //            if (jeden_byt.upraveno == true)
-        //            {
-        //                zobrazovany.zobraz_dum();
-
-        //            }
-        //        }
-        //    }
-
-
-        //}
+        
     }
 }
 

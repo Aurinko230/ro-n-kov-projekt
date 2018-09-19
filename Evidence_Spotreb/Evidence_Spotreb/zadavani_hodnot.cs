@@ -424,7 +424,7 @@ namespace Evidence_Spotreb
                     
                     
                     //zobrazovany.ulozit_dum();
-                    // ukladat az po potvrzeni
+                    // ukladat az ve vysledcich
                 
                 
                 this.Close();
@@ -449,7 +449,7 @@ namespace Evidence_Spotreb
                 double spolecny_rozdil = 0;
                 double suma_odecitanych = 0;
                 double rozdil;
-                //najde meric od ktereho se odecítá a rozdíl jeho hodnot
+                //najde meric od ktereho se odečítá a rozdíl jeho hodnot
 
                 foreach (My_TextBox jedenmeric_odecitany in textboxy)
                 {
@@ -458,7 +458,7 @@ namespace Evidence_Spotreb
                         spolecny_rozdil = jedenmeric_odecitany.zadavany_meric.rozdil_poslednich_hodnot;
                     }
                 }
-                //najde ty ktere se budou odecitat
+                //najde ty ktere se budou odečitat
                 foreach (My_TextBox odecitany in textboxy)
                 {
                     if (jedenmeric.zadavany_meric.odecitane.Contains(odecitany.zadavany_meric.Id))

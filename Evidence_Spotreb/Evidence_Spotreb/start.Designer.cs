@@ -204,11 +204,12 @@
             this.konecToolStripMenuItem.Name = "konecToolStripMenuItem";
             this.konecToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.konecToolStripMenuItem.Text = "Konec";
+            
             // 
             // konecToolStripMenuItem1
             // 
             this.konecToolStripMenuItem1.Name = "konecToolStripMenuItem1";
-            this.konecToolStripMenuItem1.Size = new System.Drawing.Size(106, 22);
+            this.konecToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.konecToolStripMenuItem1.Text = "konec";
             this.konecToolStripMenuItem1.Click += new System.EventHandler(this.konecToolStripMenuItem1_Click);
             // 
@@ -228,14 +229,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 507);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "start";
             this.Text = "Evidence spotřeb energii";
-            
             this.Load += new System.EventHandler(this.start_Load);
-            
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

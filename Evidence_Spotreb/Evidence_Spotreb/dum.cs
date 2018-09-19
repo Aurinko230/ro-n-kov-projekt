@@ -157,10 +157,15 @@ namespace Evidence_Spotreb
 
         public void ulozit_dum()
         {
-            //if (kontrola_pred_ulozenim())
-           // {
+            //if (kontrola_pred_ulozenim())/// kontrola se volá už na formulari start
+            // {
 
-                
+            if (!Directory.Exists("DOMY"))
+            {
+                Directory.CreateDirectory("DOMY");
+            }
+
+
 
                 dum_ulozeni ukladany = new dum_ulozeni(this);
 
